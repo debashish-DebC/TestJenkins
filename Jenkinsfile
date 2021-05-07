@@ -102,7 +102,8 @@ pipeline {
 	        }
 	        always {
 	            /* Clean workspace if success */
-	            cleanWs()
+	            /*cleanWs()*/
+echo 'One way or another, I have finished'
 	        }
 	    }
 	
