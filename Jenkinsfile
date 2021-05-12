@@ -28,7 +28,7 @@ pipeline {
 	                echo "GitHub BranhName ${env.BRANCH_NAME}"
 	                checkout scm
 	                def props = readJSON file: 'project.json'
-                        UIPATH_PROJECT_NAME = props['name']
+                        def varname = props['name']
 
 	            }
 	        }
