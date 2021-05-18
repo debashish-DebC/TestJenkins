@@ -11,7 +11,6 @@ pipeline {
 	        UIPATH_ORCH_LOGICAL_NAME = "accenlnbdfxy"
 	        UIPATH_ORCH_TENANT_NAME = "DebC_UIPATH_May2020"
 	        UIPATH_ORCH_FOLDER_NAME = "Default"
-		UIPATH_PROJECT_NAME = "test"
 	    }
 	
 
@@ -27,8 +26,7 @@ pipeline {
 	                echo "Jenkins JOB Name ${env.JOB_NAME}"
 	                echo "GitHub BranhName ${env.BRANCH_NAME}"
 	                checkout scm
-	                def props = readJSON file: 'project.json'
-                        def varname = props['name']
+	
 
 	            }
 	        }
@@ -73,25 +71,7 @@ pipeline {
 	        }
 	
 
-               //PostBuild Stages
-stage('Run Job'){
-steps {
-
-UiPathRunJob (
-credentials: Token(accountName: 'accenlnbdfxy', credentialsId: 'APIUserKey'), 
-failWhenJobFails: true, 
-folderName: 'Default', 
-orchestratorAddress: 'https://cloud.uipath.com/', 
-orchestratorTenant: 'DebC_UIPATH_May2020', 
-parametersFilePath: '', 
-priority: 'Low', 
-processName: "${UIPATH_PROJECT_NAME}", 
-resultFilePath: '', 
-strategy: Dynamically(machine: '', user: ''), 
-waitForJobCompletion: true,
-)
-}
-}
+	
 
 	         // Deploy to Production Step
 	        stage('Deploy to Production') {
